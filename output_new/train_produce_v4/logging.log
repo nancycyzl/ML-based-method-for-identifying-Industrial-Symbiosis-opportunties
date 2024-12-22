@@ -1,0 +1,86 @@
+Training epoch: 0, learning rate: 0.001
+Loss: 2.252325, Accuracy: 0.509849, Precision: 0.501416, Recall: 0.472946, F1: 0.486765, ROC: 0.518954
+Training epoch: 1, learning rate: 0.001
+Loss: 0.833948, Accuracy: 0.537426, Precision: 0.523555, Recall: 0.653307, F1: 0.581278, ROC: 0.571137
+Training epoch: 2, learning rate: 0.001
+Loss: 0.657299, Accuracy: 0.623112, Precision: 0.641525, Recall: 0.528390, F1: 0.579487, ROC: 0.672318
+Training epoch: 3, learning rate: 0.001
+Loss: 0.606273, Accuracy: 0.676625, Precision: 0.666234, Recall: 0.685371, F1: 0.675667, ROC: 0.735008
+Training epoch: 4, learning rate: 0.001
+Loss: 0.577115, Accuracy: 0.695995, Precision: 0.724626, Recall: 0.615230, F1: 0.665462, ROC: 0.774359
+Training epoch: 5, learning rate: 0.001
+Loss: 0.558655, Accuracy: 0.721602, Precision: 0.727082, Recall: 0.694055, F1: 0.710185, ROC: 0.794769
+Training epoch: 6, learning rate: 0.001
+Loss: 0.533501, Accuracy: 0.735062, Precision: 0.751825, Recall: 0.688043, F1: 0.718521, ROC: 0.821511
+Training epoch: 7, learning rate: 0.001
+Loss: 0.501113, Accuracy: 0.765923, Precision: 0.794294, Recall: 0.706747, F1: 0.747967, ROC: 0.849335
+Training epoch: 8, learning rate: 0.001
+Loss: 0.481558, Accuracy: 0.777413, Precision: 0.780287, Recall: 0.761523, F1: 0.770791, ROC: 0.860506
+Training epoch: 9, learning rate: 0.001
+Loss: 0.454299, Accuracy: 0.808273, Precision: 0.812030, Recall: 0.793587, F1: 0.802703, ROC: 0.878703
+Training epoch: 10, learning rate: 0.001
+Loss: 0.456459, Accuracy: 0.793828, Precision: 0.812815, Recall: 0.754175, F1: 0.782398, ROC: 0.868983
+Training epoch: 11, learning rate: 0.001
+Loss: 0.430117, Accuracy: 0.811884, Precision: 0.819061, Recall: 0.792251, F1: 0.805433, ROC: 0.886252
+Training epoch: 12, learning rate: 0.001
+Loss: 0.415083, Accuracy: 0.815824, Precision: 0.825000, Recall: 0.793587, F1: 0.808989, ROC: 0.894754
+Training epoch: 13, learning rate: 0.001
+Loss: 0.413983, Accuracy: 0.823375, Precision: 0.824645, Recall: 0.813627, F1: 0.819099, ROC: 0.894812
+Training epoch: 14, learning rate: 0.001
+Loss: 0.424200, Accuracy: 0.819764, Precision: 0.832865, Recall: 0.792251, F1: 0.812051, ROC: 0.888134
+Training epoch: 15, learning rate: 0.001
+Loss: 0.417757, Accuracy: 0.803677, Precision: 0.807245, Recall: 0.788911, F1: 0.797973, ROC: 0.890979
+Training epoch: 16, learning rate: 0.001
+Loss: 0.404107, Accuracy: 0.822062, Precision: 0.821549, Recall: 0.814963, F1: 0.818243, ROC: 0.898053
+Training epoch: 17, learning rate: 0.0005
+Loss: 0.389739, Accuracy: 0.828956, Precision: 0.828398, Recall: 0.822311, F1: 0.825344, ROC: 0.907317
+Training epoch: 18, learning rate: 0.0005
+Loss: 0.385367, Accuracy: 0.832567, Precision: 0.840110, Recall: 0.814295, F1: 0.827001, ROC: 0.909916
+Training epoch: 19, learning rate: 0.0005
+Loss: 0.377953, Accuracy: 0.838477, Precision: 0.842536, Recall: 0.825651, F1: 0.834008, ROC: 0.912759
+Training epoch: 20, learning rate: 0.0005
+Loss: 0.376085, Accuracy: 0.840775, Precision: 0.844687, Recall: 0.828323, F1: 0.836425, ROC: 0.914502
+Training epoch: 21, learning rate: 0.0005
+Loss: 0.380041, Accuracy: 0.839462, Precision: 0.831579, Recall: 0.844355, F1: 0.837918, ROC: 0.911185
+Training epoch: 22, learning rate: 0.0005
+Loss: 0.374567, Accuracy: 0.839790, Precision: 0.837007, Recall: 0.837007, F1: 0.837007, ROC: 0.914983
+Training epoch: 23, learning rate: 0.0005
+Loss: 0.371669, Accuracy: 0.842088, Precision: 0.846049, Recall: 0.829659, F1: 0.837774, ROC: 0.916580
+Training epoch: 24, learning rate: 0.0005
+Loss: 0.366089, Accuracy: 0.844714, Precision: 0.844549, Recall: 0.838343, F1: 0.841435, ROC: 0.919003
+Training epoch: 25, learning rate: 0.0005
+Loss: 0.364622, Accuracy: 0.846356, Precision: 0.840503, Recall: 0.848363, F1: 0.844415, ROC: 0.919495
+Training epoch: 26, learning rate: 0.0005
+Loss: 0.381235, Accuracy: 0.836179, Precision: 0.835801, Recall: 0.829659, F1: 0.832719, ROC: 0.910224
+Training epoch: 27, learning rate: 0.0005
+Loss: 0.368632, Accuracy: 0.846028, Precision: 0.850614, Recall: 0.832999, F1: 0.841714, ROC: 0.917452
+Training epoch: 28, learning rate: 0.0005
+Loss: 0.363381, Accuracy: 0.848982, Precision: 0.845436, Recall: 0.847695, F1: 0.846564, ROC: 0.919508
+Training epoch: 29, learning rate: 0.0005
+Loss: 0.354639, Accuracy: 0.851937, Precision: 0.848202, Recall: 0.851035, F1: 0.849617, ROC: 0.923877
+Training epoch: 30, learning rate: 0.0005
+Loss: 0.356092, Accuracy: 0.849967, Precision: 0.843461, Recall: 0.853039, F1: 0.848223, ROC: 0.922720
+Training epoch: 31, learning rate: 0.0005
+Loss: 0.354227, Accuracy: 0.849311, Precision: 0.841447, Recall: 0.854375, F1: 0.847862, ROC: 0.923343
+Training epoch: 32, learning rate: 0.0005
+Loss: 0.356403, Accuracy: 0.849311, Precision: 0.846925, Recall: 0.846359, F1: 0.846642, ROC: 0.922554
+Training epoch: 33, learning rate: 0.0005
+Loss: 0.350355, Accuracy: 0.852594, Precision: 0.855978, Recall: 0.841683, F1: 0.848771, ROC: 0.925738
+Training epoch: 34, learning rate: 0.00025
+Loss: 0.349955, Accuracy: 0.858831, Precision: 0.843972, Recall: 0.874415, F1: 0.858924, ROC: 0.926194
+Training epoch: 35, learning rate: 0.00025
+Loss: 0.343261, Accuracy: 0.852594, Precision: 0.848404, Recall: 0.852371, F1: 0.850383, ROC: 0.928209
+Training epoch: 36, learning rate: 0.00025
+Loss: 0.347826, Accuracy: 0.855220, Precision: 0.855795, Recall: 0.848363, F1: 0.852063, ROC: 0.926570
+Training epoch: 37, learning rate: 0.00025
+Loss: 0.347802, Accuracy: 0.856861, Precision: 0.851557, Recall: 0.858383, F1: 0.854957, ROC: 0.926170
+Training epoch: 38, learning rate: 0.00025
+Loss: 0.340158, Accuracy: 0.855877, Precision: 0.843953, Recall: 0.867067, F1: 0.855354, ROC: 0.930517
+Training epoch: 39, learning rate: 0.00025
+Loss: 0.338220, Accuracy: 0.857846, Precision: 0.858491, Recall: 0.851035, F1: 0.854747, ROC: 0.930713
+------------------------------------------------------------
+Training hours: 1.922220317059093
+All results are saved at: output_new/train_produce_v4
+Train Accuracy: 0.8595, Precision: 0.8464, Recall: 0.8724, F1: 0.8592, ROC: 0.9340
+Val Accuracy: 0.8652, Precision: 0.8769, Recall: 0.8559, F1: 0.8663, ROC: 0.9249
+Test Accuracy: 0.8652, Precision: 0.8772, Recall: 0.8671, F1: 0.8721, ROC: 0.9293
