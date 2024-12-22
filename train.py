@@ -27,7 +27,6 @@ def make_argument():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--EI_file', type=str, default="data/EI_data1_valid_need.csv", help="Path to the EI input csv file.")
-    parser.add_argument('--HE_file', type=str, default="data/HE_data1_cpc.csv", help="Path to the HE input csv file")
     parser.add_argument('--output_dir', type=str, default="output_new", help="output directory for saving trained models")
     parser.add_argument('--epochs', type=int, default=20, help="how many epochs to train")
     parser.add_argument('--dataset_mode', type=str, default="produce", help="mixed / produce / need")

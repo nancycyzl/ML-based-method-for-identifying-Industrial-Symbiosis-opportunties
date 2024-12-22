@@ -14,7 +14,6 @@ from utils import *
 import logging
 
 
-
 def make_argument():
     parser = argparse.ArgumentParser()
 
@@ -126,57 +125,47 @@ def evaluate_model(model, embedding_tokenizer, embedding_model, data_loader, arg
     return accuracy, precision, recall, f1, roc_auc, total_loss/len(data_loader)
 
 
-def prepare_dataset(mode):
-    print("Preparing dataloader...")
-
-    dataset_HE_noneg = ISDataset(filepath="data/HE_data_noneg.csv", mode=mode)
-
-    dataset_HE_data1_noneg = ISDataset(filepath="data/HE_data1_noneg.csv", mode=mode)
-    dataset_HE_data1_noneg_valid = ISDataset(filepath="data/HE_data1_noneg_valid.csv", mode=mode)
-    dataset_HE_data1_noneg_invalid = ISDataset(filepath="data/HE_data1_noneg_invalid.csv", mode=mode)
-
-    dataset_HE_data1_cpc_noneg= ISDataset(filepath="data/HE_data1_cpc_noneg.csv", mode=mode)
-    dataset_HE_data1_cpc_noneg_valid = ISDataset(filepath="data/HE_data1_cpc_noneg_valid.csv", mode=mode)
-    dataset_HE_data1_cpc_noneg_invalid = ISDataset(filepath="data/HE_data1_cpc_noneg_invalid.csv", mode=mode)
-
-    # dataset_HE_lvl2_noneg = ISDataset(filepath="data/HE_data1_lvl2_noneg.csv", mode="produce")
-    # dataset_HE_lvl23_noneg = ISDataset(filepath="data/HE_data1_lvl23_noneg.csv", mode="produce")
-    #
-    # dataset_EI_train, dataset_EI_test = train_test_split(dataset_EI, test_size=0.2, random_state=42)
-    # dataset_HE_train, dataset_HE_test = train_test_split(dataset_HE, test_size=0.2, random_state=42)
-    #
-    # dataset_train = ConcatDataset([dataset_EI_train, dataset_HE_train])
-
-    datasets = [dataset_HE_noneg, dataset_HE_data1_noneg, dataset_HE_data1_noneg_valid, dataset_HE_data1_noneg_invalid,
-                dataset_HE_data1_cpc_noneg, dataset_HE_data1_cpc_noneg_valid, dataset_HE_data1_cpc_noneg_invalid]
-    names = ["dataset_HE_noneg", "dataset_HE_data1_noneg", "dataset_HE_data1_noneg_valid", "dataset_HE_data1_noneg_invalid",
-             "dataset_HE_data1_cpc_noneg", "dataset_HE_data1_cpc_noneg_valid", "dataset_HE_data1_cpc_noneg_invalid"]
-
-    assert len(datasets) == len(names), "dataset list and name list do not match"
-
-    return datasets, names
-
-
 def logits_to_labels(logits, threshold):
     probs = torch.sigmoid(logits)
     labels = (probs >= threshold).int()
     return labels
 
 
+def prepare_dataset(mode):
+    # for evaluating models on multiple dataset simultaneously
+    # need to prepare csv files in the same format as the training data
+    print("Preparing dataloader...")
+
+    # # customize following code
+    # dataset1 = ISDataset(filepath="data/EI_data1.csv", mode=mode)
+    # dataset2 = ISDataset(filepath="data/EI_data2.csv", mode=mode)
+    #
+    # datasets = [dataset1, dataset2]
+    # names = ["dataset_HE_noneg", "dataset_HE_data1_noneg"]
+    #
+    # assert len(datasets) == len(names), "dataset list and name list do not match"
+    #
+    # return datasets, names
+
+
 def prepare_trained_models():
-    model_path_list = ["output/train_EIHE_produce_epoch50/model_state_dict_epoch0.pth",
-                       "output/train_EIHE_produce_epoch50/model_state_dict_epoch10.pth",
-                       "output/train_EIHE_produce_epoch50/model_state_dict_epoch20.pth",
-                       "output/train_EIHE_produce_epoch50/model_state_dict_epoch30.pth",
-                       "output/train_EIHE_produce_epoch50/model_state_dict_epoch40.pth",
-                       "output/train_EIHE_produce_epoch50/model_state_dict.pth"]
+    # for evaluating multiple models
+    print("Preparing trained models...")
 
-    model_name_list = ["produce_epoch0", "produce_epoch10", "produce_epoch20",
-                       "produce_epoch30", "produce_epoch40", "produce_epoch50"]
-
-    assert len(model_path_list) == len(model_name_list), "model path list and name list do not match"
-
-    return model_path_list, model_name_list
+    # # customize following code
+    # model_path_list = ["output/train_EIHE_produce_epoch50/model_state_dict_epoch0.pth",
+    #                    "output/train_EIHE_produce_epoch50/model_state_dict_epoch10.pth",
+    #                    "output/train_EIHE_produce_epoch50/model_state_dict_epoch20.pth",
+    #                    "output/train_EIHE_produce_epoch50/model_state_dict_epoch30.pth",
+    #                    "output/train_EIHE_produce_epoch50/model_state_dict_epoch40.pth",
+    #                    "output/train_EIHE_produce_epoch50/model_state_dict.pth"]
+    #
+    # model_name_list = ["produce_epoch0", "produce_epoch10", "produce_epoch20",
+    #                    "produce_epoch30", "produce_epoch40", "produce_epoch50"]
+    #
+    # assert len(model_path_list) == len(model_name_list), "model path list and name list do not match"
+    #
+    # return model_path_list, model_name_list
 
 
 def evaluate_multi_dataset(args, dataset_list, name_list):
@@ -189,7 +178,7 @@ def evaluate_multi_dataset(args, dataset_list, name_list):
     state_dict = torch.load(args.model_path)
     model.load_state_dict(state_dict)
 
-    # dataset_list, name_list = prepare_dataset(mode=args.dataset_mode)
+    embedding_tokenizer, embedding_model = load_embedding_model(args.embedding_model)
 
     print("Make predictions and evaluation for", name_list, end="\n\n")
     for dataset, name in zip(dataset_list, name_list):
@@ -197,7 +186,7 @@ def evaluate_multi_dataset(args, dataset_list, name_list):
         logging.info("Evaluating dataset: {}".format(name))
         dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
         accuracy, precision, recall, modified_f1, roc_auc, _ = evaluate_model(
-            model, dataloader, args, note="{}_thre{}".format(name, args.threshold), save_plot=True)
+            model, embedding_tokenizer, embedding_model, dataloader, args, note="{}_thre{}".format(name, args.threshold), save_plot=True)
         f1 = safe_divide(2 * precision * recall, precision + recall)
         result_str = "{} (total {}): Accuracy {:4f}, Precision {:4f}, Recall {:4f}, F1 {:4f}, modified_F1 {:4f}, AUC {:.4f}".format(
             name, len(dataset), accuracy, precision, recall, f1, modified_f1, roc_auc)
@@ -211,11 +200,10 @@ def evaluate_multi_model(args, model_paths, model_names):
     # measure performance on one dataset with a series of trained models
 
     # test dataset
-    name = "HE_data1_cpc_test"
+    name = "EI_data1_valid_need"
     logging.info("Evaluating dataset: {}".format(name))
-    dataset = ISDataset(filepath="data/HE_data1_cpc.csv", mode=args.dataset_mode)
-    dataset_HE_train, dataset_HE_test = train_test_split(dataset, test_size=0.2, random_state=42)
-    dataloader = DataLoader(dataset_HE_test, batch_size=args.batch_size, shuffle=False)
+    dataset = ISDataset(filepath="data/EI_data1_valid_need.csv", mode=args.dataset_mode)
+    dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
 
     # model_paths, model_names = prepare_trained_models()
     for model_path, model_name in zip(model_paths, model_names):
@@ -227,9 +215,11 @@ def evaluate_multi_model(args, model_paths, model_names):
         state_dict = torch.load(model_path)
         model.load_state_dict(state_dict)
 
+        embedding_tokenizer, embedding_model = load_embedding_model(args.embedding_model)
+
         # evaluate
         accuracy, precision, recall, modified_f1, roc_auc, _ = evaluate_model(
-            model, dataloader, args, note="{}_thre{}".format(model_name, args.threshold), save_plot=True)
+            model, embedding_tokenizer, embedding_model, dataloader, args, note="{}_thre{}".format(model_name, args.threshold), save_plot=True)
         f1 = safe_divide(2 * precision * recall, precision + recall)
         result_str = "{} (total {}): Accuracy {:4f}, Precision {:4f}, Recall {:4f}, F1 {:4f}, modified_F1 {:4f}, AUC {:.4f}".format(
             name, len(dataset), accuracy, precision, recall, f1, modified_f1, roc_auc)
@@ -248,10 +238,12 @@ def evaluate_multi_threshold(args):
     state_dict = torch.load(args.model_path)
     model.load_state_dict(state_dict)
 
+    embedding_tokenizer, embedding_model = load_embedding_model(args.embedding_model)
+
     # prepare test dataset
     name = "HE_data"
     logging.info("Evaluating dataset: {}".format(name))
-    dataset = ISDataset(filepath="data/HE_data.csv", mode=args.dataset_mode)
+    dataset = ISDataset(filepath="data/EI_data.csv", mode=args.dataset_mode)
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
 
     # define threshold
@@ -264,7 +256,7 @@ def evaluate_multi_threshold(args):
         print(thre_str)
         args.threshold = threshold
         accuracy, precision, recall, modified_f1, roc_auc, _ = evaluate_model(
-            model, dataloader, args, note="thre{}".format(threshold), save_plot=True)
+            model, embedding_tokenizer, embedding_model, dataloader, args, note="thre{}".format(threshold), save_plot=True)
         f1 = safe_divide(2 * precision * recall, precision + recall)
         result_str = "{} (total {}): Accuracy {:4f}, Precision {:4f}, Recall {:4f}, F1 {:4f}, modified_F1 {:4f}, AUC {:.4f}".format(
             name, len(dataset), accuracy, precision, recall, f1, modified_f1, roc_auc)
@@ -288,7 +280,7 @@ if __name__ == '__main__':
                         filename=logging_file_path,
                         filemode='w')
 
-    # evaluate: 2 modes
+    # # 3 types of evaluation
     # evaluate_multi_dataset(args, *prepare_dataset(mode=args.dataset_mode))
     # evaluate_multi_model(args, *prepare_trained_models())
     # evaluate_multi_threshold(args)
